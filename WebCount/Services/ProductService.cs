@@ -41,5 +41,12 @@ namespace WebCount.Services
             }
             return response;
         }
+        
+
+        public void Add(Product product)
+        {
+            _productRepository.Add(product);
+        }
+
     }
 }

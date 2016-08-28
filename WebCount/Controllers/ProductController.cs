@@ -39,5 +39,19 @@ namespace WebCount.Controllers
 
             return InternalServerError(response.OperationException);
         }
+
+        [HttpPost]
+        public void Add(Product product)
+        {
+            try
+            {
+                _productService.Add(product);
+            }
+            catch (NullReferenceException)
+            {
+                //log error
+                throw;
+            }
+        }
     }
 }

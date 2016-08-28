@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>heyyyy</title>
+    <title></title>
 	<meta charset="utf-8" />
 </head>
 <body>
@@ -11,17 +11,18 @@
             <li>something</li>
         </ul>
     </div>
-    <form id="newProductForm">
-        <label>Id</label>
-        <input id="newProductId" />
-        <label>Name</label>
-        <input id="newProductName" />
-        <label>Type Id</label>
-        <input id="newProductTypeId" />
-        <input type="submit" id="addProductSubmit" value="Add Product" />
-    </form>
-
-    <
+    <div>
+        <h2>Add a Product</h2>
+        <form id="newProductForm">
+            <label>Id</label>
+            <input id="newProductId" />
+            <label>Name</label>
+            <input id="newProductName" />
+            <label>Type Id</label>
+            <input id="newProductTypeId" />
+            <input type="submit" id="addProductSubmit" value="Add Product" />
+        </form>
+    </div>
 </body>
 </html>
 
@@ -32,10 +33,8 @@
 
     $(document).ready(function () {
         // Send an AJAX request
-        debugger;
         $.getJSON(uri)
           .done(function (data) {
-              debugger;
             // On success, 'data' contains a list of products.
             $.each(data, function (key, item) {
               // Add a list item for the product.
@@ -50,11 +49,14 @@
 
     $('#addProductSubmit').click(function (event) {
         event.preventDefault();
-
+        var id = $('#newProductId').val();
+        var name = $('#newProductName').val();
+        var productTypeId = $('#newProductTypeId').val();
+        debugger;
         $.ajax({
             type: 'POST',
             url: '/api/product',
-            data: $('#addProductForm').serialize(),
+            data: {"Id":id, "Name":name, "ProductTypeId":productTypeId},
             success: function () {
                 debugger;
             },
